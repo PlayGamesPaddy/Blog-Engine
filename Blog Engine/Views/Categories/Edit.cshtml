@@ -1,0 +1,42 @@
+﻿@model Blog_Engine.Models.ViewModels.CategoryViewModel
+
+@{
+    ViewData["Title"] = "Add";
+}
+
+<h1>Edit Category</h1>
+
+<hr />
+@using (Html.BeginForm()) 
+{
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Add">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col col-md-auto">
+                            <label asp-for="Title" class="control-label">Title</label>
+                            </div>
+                                <div class="col col-md-auto">
+                            @Html.HiddenFor(model => model.Id)
+                            @Html.HiddenFor(model => model.Posts)
+                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                                <div class="col col-md-auto">
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                            </div>
+                            </div>
+                        </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+}
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
