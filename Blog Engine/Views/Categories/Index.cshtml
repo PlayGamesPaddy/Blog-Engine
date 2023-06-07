@@ -1,81 +1,160 @@
-﻿@*
+@*
+
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 *@
+
 @model IEnumerable<Blog_Engine.Models.ViewModels.CategoryViewModel>
+
 @{
+
     ViewData["Title"] = "Catagories";
 
-}
+ 
 
+}
     <br />
-    @if (Model.Count() > 0)
-    {
 
     @using (Html.BeginForm())
+
     {
+
         <table class="table tabble-bordered table-striped" style="width:99%">
+
             <thread>
+
                 <tr>
+
                     <th class="w-10">
+
                             <h2>Category</h2>
-                    </th>
-                    <th class="w-75">
-                        @Html.ActionLink("Add", "Add", "categories", null, htmlAttributes: new {@class="btn btn-success mx-1"})
+
                     </th>
 
+                    <th class="w-75">
+
+                        @Html.ActionLink("Add", "Add", "categories", null, htmlAttributes: new {@class="btn btn-success mx-1"})
+
+                    </th>
+
+ 
+
                 </tr>
+
             </thread>
+
             <tbody>
+
+            @if (Model != null)
+
+            {
+
                 @foreach (var Rclass in Model)
+
                 {
+
                     <tr>
+
                         <!--width="10%"-->
-                    <td>
-                        @Html.ActionLink(@Rclass.Title,"Edit","categories",new{id= Rclass.Id},htmlAttributes: null)
-                    </td>
+
                         <td>
 
+                            @Html.ActionLink(@Rclass.Title,"Edit","categories",new{id= Rclass.Id},htmlAttributes: null)
+
                         </td>
+
+                        <td>
+
+ 
+
+                        </td>
+
                     </tr>
 
+ 
+
                 }
+
+            }
+
             </tbody>
+
         </table>
+
+ 
 
         <table class="table tabble-bordered table-striped" style="width:99%">
+
             <thread>
+
                 <tr>
+
                     <th class="w-10">
+
                             <h2>Posts</h2>
+
                     </th>
+
                     <th class="w-75">
+
                         @Html.ActionLink("Add", "Add", "post", null, htmlAttributes: new {@class="btn btn-success mx-1"})
-                    </th>
+
+                   </th>
+
+ 
 
                 </tr>
+
             </thread>
+
             <tbody>
+
+            @if (Model != null)
+
+            {
+
                 @foreach (var Rclass in Model)
+
                 {
+
                     @if (Rclass.Posts != null)
+
                     {
+
                         @foreach (var Cpost in Rclass.Posts)
+
                         {
+
                             <tr>
+
                                 <!--width="10%"-->
-                    <td>
-                                    @Html.ActionLink(@Cpost.Title,"Edit","post",new{id= Cpost.Id},htmlAttributes: null)
-                                </td>
+
                                 <td>
 
+                                    @Html.ActionLink(@Cpost.Title,"Edit","post",new{id= Cpost.Id},htmlAttributes: null)
+
                                 </td>
-                            </tr>
+
+                                <td>
+
+ 
+
+                                </td>
+
+                           </tr>
+
                         }
+
                     }
-                    
+
                 }
-                
+
+            } 
+
             </tbody>
+
         </table>
-    }
+
+   
+
 }
